@@ -37,11 +37,8 @@ public class Sistema {
             return false;
         }
 
-        if (!textoValido(animal.getCodigo())
-                || !textoValido(animal.getNombre())
-                || !textoValido(animal.getTemperamento())
-                || !Double.isFinite(animal.getPeso())
-                || animal.getPeso() <= 0) {
+        if (!textoValido(animal.getCodigo()) || !textoValido(animal.getNombre()) || !textoValido(animal.getTemperamento())
+                || !Double.isFinite(animal.getPeso()) || animal.getPeso() <= 0) {
             return false;
         }
 
@@ -66,9 +63,7 @@ public class Sistema {
             return false;
         }
 
-        if (!textoValido(familia.getCedula())
-                || !textoValido(familia.getApellido())
-                || !textoValido(familia.getCelular())) {
+        if (!textoValido(familia.getCedula()) || !textoValido(familia.getApellido()) || !textoValido(familia.getCelular())) {
             return false;
         }
 
@@ -85,9 +80,7 @@ public class Sistema {
             return false;
         }
 
-        if (!textoValido(empresa.getNombre())
-                || !textoValido(empresa.getRut())
-                || !textoValido(empresa.getDireccion())) {
+        if (!textoValido(empresa.getNombre()) || !textoValido(empresa.getRut()) || !textoValido(empresa.getDireccion())) {
             return false;
         }
 
@@ -106,8 +99,7 @@ public class Sistema {
         }
 
         for (Animal animal : animales) {
-            if (animal.getCodigo().trim()
-                    .equalsIgnoreCase(codigo.trim())) {
+            if (animal.getCodigo().trim().equalsIgnoreCase(codigo.trim())) {
                 return animal;
             }
         }
@@ -121,8 +113,7 @@ public class Sistema {
         }
 
         for (Familia familia : familias) {
-            if (familia.getCedula().trim()
-                    .equals(cedula.trim())) {
+            if (familia.getCedula().trim().equals(cedula.trim())) {
                 return familia;
             }
         }
@@ -136,8 +127,7 @@ public class Sistema {
         }
 
         for (Empresa empresa : empresas) {
-            if (empresa.getRut().trim()
-                    .equals(rut.trim())) {
+            if (empresa.getRut().trim().equals(rut.trim())) {
                 return empresa;
             }
         }
