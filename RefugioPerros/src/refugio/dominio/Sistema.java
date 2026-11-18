@@ -1,8 +1,6 @@
-
 package refugio.dominio;
 
 // autores
-
 import java.util.ArrayList;
 
 public class Sistema {
@@ -144,6 +142,15 @@ public class Sistema {
 
         return null;
     }
+    
+    public Adopcion buscarAdopcion(int numero) {
+        for (Adopcion adopcion : adopciones) {
+            if (adopcion.getNumero() == numero) {
+                return adopcion;
+            }
+        }
+        return null;
+    }
 
     // consultas listas
     public ArrayList<Animal> getAnimales() {
@@ -169,5 +176,59 @@ public class Sistema {
     // validacion aux
     private boolean textoValido(String texto) {
         return texto != null && !texto.trim().isEmpty();
+    }
+
+    //métodos de adopciones
+    public Adopcion realizarAdocpcion(String codigoAnimal, String cedulaFamilia, String comentarios) {
+
+        if (codigoAnimal == null || cedulaFamilia == null) {
+            return null;
+        }
+
+        Animal animalIngresado = buscarAnimal(codigoAnimal);
+        if (animalIngresado == null || !DISPONIBLE.equals(animalIngresado.getEstado())) {
+            return null;
+        }
+        
+        Familia familiaIngresada = buscarFamilia(cedulaFamilia);
+        if (familiaIngresada == null) {
+            return null;
+        }
+        
+        Adopcion adopcion = new Adopcion(proximoNumeroAdopcion, animalIngresado, familiaIngresada, comentarios);
+        proximoNumeroAdopcion++;
+        
+        animalIngresado.setEstado(ENTREGADO);
+        adopciones.add(adopcion);
+        
+        return adopcion;
+    }
+    
+    public boolean anularAdopcion(int numero){
+        Adopcion adopcionIngresada = buscarAdopcion(numero);
+        if(adopcionIngresada == null){
+            return false;
+        }
+        
+        Animal animal = adopcionIngresada.getAnimal();
+        animal.setEstado(NO_DISPONIBLE);
+        adopciones.remove(adopcionIngresada);
+        
+        return true;
+    }
+    
+    public boolean cambiarEstadoAnimal(string codigo){
+        
+        Animal animalIngresado = buscarAnimal(codigo);
+        if(animalIngresado == null || !ENTREGADO.equals(animalIngresado.getEstado())){
+            return false;
+        }
+        if(animalIngresado.getEstado().equals(DISPONIBLE)){
+            animalIngresado.setEstado(NO_DISPONIBLE);
+        }else{
+            animalIngresado.setEstado(DISPONIBLE);
+        }
+        
+        return true;
     }
 }
