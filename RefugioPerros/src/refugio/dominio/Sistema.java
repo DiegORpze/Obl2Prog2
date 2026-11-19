@@ -207,7 +207,7 @@ public class Sistema {
         return true;
     }
     
-    public boolean cambiarEstadoAnimal(string codigo){
+    public boolean cambiarEstadoAnimal(String codigo){
         
         Animal animalIngresado = buscarAnimal(codigo);
         if(animalIngresado == null || !ENTREGADO.equals(animalIngresado.getEstado())){
