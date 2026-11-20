@@ -1,10 +1,7 @@
 
 package refugio;
 
-// Autores: completar nombres y números de estudiante
-
-import refugio.dominio.Animal;
-import refugio.dominio.Sistema;
+import refugio.dominio.*;
 
 public class Main {
 
@@ -12,23 +9,30 @@ public class Main {
 
         Sistema sistema = new Sistema();
 
-        Animal perro1 = new Animal(
-                "A001", "Rocky", "Tranquilo",
-                15.5, Sistema.DISPONIBLE);
+        Empresa empresa = new Empresa(
+                "Alimentos SA",
+                "123456789012",
+                "Av. Italia 1234"
+        );
 
-        Animal perro2 = new Animal(
-                "A002", "Luna", "Juguetona",
-                8.0, Sistema.NO_DISPONIBLE);
+        sistema.agregarEmpresa(empresa);
 
-        Animal perro3 = new Animal(
-                "A001", "Max", "Activo",
-                12.0, Sistema.DISPONIBLE);
+        Donacion donacion1 = sistema.registrarDonacion(
+                "123456789012", 2, 15.5);
 
-        System.out.println(sistema.agregarAnimal(perro1));
-        System.out.println(sistema.agregarAnimal(perro2));
-        System.out.println(sistema.agregarAnimal(perro3));
+        Donacion donacion2 = sistema.registrarDonacion(
+                "123456789012", 2, 4.5);
 
-        System.out.println("Total de animales: "
-                + sistema.getAnimales().size());
+        System.out.println("Donacion 1: "
+                + donacion1.getNumero());
+
+        System.out.println("Donacion 2: "
+                + donacion2.getNumero());
+
+        System.out.println("Total donaciones: "
+                + sistema.getDonaciones().size());
+
+        System.out.println("Stock tipo 2: "
+                + sistema.getStockPorTipo(2));
     }
 }

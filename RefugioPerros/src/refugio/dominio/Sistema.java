@@ -132,7 +132,7 @@ public class Sistema {
 
         return null;
     }
-    
+
     public Adopcion buscarAdopcion(int numero) {
         for (Adopcion adopcion : adopciones) {
             if (adopcion.getNumero() == numero) {
@@ -169,7 +169,7 @@ public class Sistema {
     }
 
     //métodos de adopciones
-    public Adopcion realizarAdocpcion(String codigoAnimal, String cedulaFamilia, String comentarios) {
+    public Adopcion realizarAdopcion(String codigoAnimal, String cedulaFamilia, String comentarios) {
 
         if (codigoAnimal == null || cedulaFamilia == null) {
             return null;
@@ -179,46 +179,86 @@ public class Sistema {
         if (animalIngresado == null || !DISPONIBLE.equals(animalIngresado.getEstado())) {
             return null;
         }
-        
+
         Familia familiaIngresada = buscarFamilia(cedulaFamilia);
         if (familiaIngresada == null) {
             return null;
         }
-        
+
         Adopcion adopcion = new Adopcion(proximoNumeroAdopcion, animalIngresado, familiaIngresada, comentarios);
         proximoNumeroAdopcion++;
-        
+
         animalIngresado.setEstado(ENTREGADO);
         adopciones.add(adopcion);
-        
+
         return adopcion;
     }
-    
-    public boolean anularAdopcion(int numero){
+
+    public boolean anularAdopcion(int numero) {
         Adopcion adopcionIngresada = buscarAdopcion(numero);
-        if(adopcionIngresada == null){
+        if (adopcionIngresada == null) {
             return false;
         }
-        
+
         Animal animal = adopcionIngresada.getAnimal();
         animal.setEstado(NO_DISPONIBLE);
         adopciones.remove(adopcionIngresada);
-        
+
         return true;
     }
-    
-    public boolean cambiarEstadoAnimal(String codigo){
-        
+
+    public boolean cambiarEstadoAnimal(String codigo) {
+
         Animal animalIngresado = buscarAnimal(codigo);
-        if(animalIngresado == null || !ENTREGADO.equals(animalIngresado.getEstado())){
+        if (animalIngresado == null
+                || ENTREGADO.equals(animalIngresado.getEstado())) {
             return false;
         }
-        if(animalIngresado.getEstado().equals(DISPONIBLE)){
+        if (animalIngresado.getEstado().equals(DISPONIBLE)) {
             animalIngresado.setEstado(NO_DISPONIBLE);
-        }else{
+        } else {
             animalIngresado.setEstado(DISPONIBLE);
         }
-        
         return true;
     }
+
+    public Donacion registrarDonacion(String rutEmpresa, int tipo,
+            double cantidadKilos) {
+
+        Empresa empresa = buscarEmpresa(rutEmpresa);
+
+        if (empresa == null) {
+            return null;
+        }
+
+        if (tipo < 1 || tipo > 4) {
+            return null;
+        }
+
+        if (!Double.isFinite(cantidadKilos) || cantidadKilos <= 0) {
+            return null;
+        }
+
+        Donacion donacion = new Donacion(
+                proximoNumeroDonacion, empresa, tipo, cantidadKilos);
+
+        donaciones.add(donacion);
+        proximoNumeroDonacion++;
+
+        return donacion;
+    }
+
+    public double getStockPorTipo(int tipo) {
+
+        double total = 0;
+
+        for (Donacion donacion : donaciones) {
+            if (donacion.getTipo() == tipo) {
+                total += donacion.getCantidadKilos();
+            }
+        }
+
+        return total;
+    }
+
 }
