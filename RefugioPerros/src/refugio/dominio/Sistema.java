@@ -17,6 +17,7 @@ public class Sistema implements Serializable {
     private ArrayList<Empresa> empresas;
     private ArrayList<Adopcion> adopciones;
     private ArrayList<Donacion> donaciones;
+    private transient ArrayList<ObservadorSistema> observadores;
 
     private int proximoNumeroAdopcion;
     private int proximoNumeroDonacion;
@@ -27,6 +28,7 @@ public class Sistema implements Serializable {
         empresas = new ArrayList<>();
         adopciones = new ArrayList<>();
         donaciones = new ArrayList<>();
+        observadores = new ArrayList<>();
 
         proximoNumeroAdopcion = 1;
         proximoNumeroDonacion = 1;
@@ -54,6 +56,7 @@ public class Sistema implements Serializable {
         }
 
         animales.add(animal);
+        notificarObservadores();
         return true;
     }
 
@@ -71,6 +74,7 @@ public class Sistema implements Serializable {
         }
 
         familias.add(familia);
+        notificarObservadores();
         return true;
     }
 
@@ -88,6 +92,7 @@ public class Sistema implements Serializable {
         }
 
         empresas.add(empresa);
+        notificarObservadores();
         return true;
     }
 
@@ -193,6 +198,8 @@ public class Sistema implements Serializable {
         animalIngresado.setEstado(ENTREGADO);
         adopciones.add(adopcion);
 
+        notificarObservadores();
+
         return adopcion;
     }
 
@@ -205,6 +212,8 @@ public class Sistema implements Serializable {
         Animal animal = adopcionIngresada.getAnimal();
         animal.setEstado(NO_DISPONIBLE);
         adopciones.remove(adopcionIngresada);
+
+        notificarObservadores();
 
         return true;
     }
@@ -221,6 +230,9 @@ public class Sistema implements Serializable {
         } else {
             animalIngresado.setEstado(DISPONIBLE);
         }
+
+        notificarObservadores();
+
         return true;
     }
 
@@ -246,6 +258,8 @@ public class Sistema implements Serializable {
 
         donaciones.add(donacion);
         proximoNumeroDonacion++;
+
+        notificarObservadores();
 
         return donacion;
     }
@@ -365,6 +379,52 @@ public class Sistema implements Serializable {
             }
         }
         return cant;
+    }
+
+// observer
+    public void agregarObservador(ObservadorSistema observador) {
+
+        if (observadores == null) {
+            observadores = new ArrayList<>();
+        }
+
+        if (observador != null && !observadores.contains(observador)) {
+            observadores.add(observador);
+        }
+    }
+
+    public void eliminarObservador(ObservadorSistema observador) {
+
+        if (observadores != null) {
+            observadores.remove(observador);
+        }
+    }
+
+    private void notificarObservadores() {
+
+        if (observadores != null) {
+
+            ArrayList<ObservadorSistema> copia
+                    = new ArrayList<>(observadores);
+
+            for (ObservadorSistema observador : copia) {
+                observador.actualizar(this);
+            }
+        }
+    }
+
+    public void recuperarDatos(Sistema datos) {
+
+        animales = datos.getAnimales();
+        familias = datos.getFamilias();
+        empresas = datos.getEmpresas();
+        adopciones = datos.getAdopciones();
+        donaciones = datos.getDonaciones();
+
+        proximoNumeroAdopcion = datos.proximoNumeroAdopcion;
+        proximoNumeroDonacion = datos.proximoNumeroDonacion;
+
+        notificarObservadores();
     }
 
 }

@@ -2,70 +2,48 @@ package refugio;
 
 //PESCE Diego; ROUET--COIRIER Raphaël
 import refugio.dominio.*;
-import refugio.servicios.Persistencia;
-import java.io.IOException;
 
-public class Main {
+public class Main implements ObservadorSistema {
 
     public static void main(String[] args) {
 
         Sistema sistema = new Sistema();
 
+        Main observador = new Main();
+
+        sistema.agregarObservador(observador);
+
         sistema.agregarAnimal(new Animal(
                 "A001", "Rocky", "Tranquilo",
                 15.5, Sistema.DISPONIBLE));
 
-        sistema.agregarFamilia(new Familia(
-                "12345678", "Fernandez", "099123456"));
+        sistema.agregarAnimal(new Animal(
+                "A002", "Luna", "Juguetona",
+                8.0, Sistema.DISPONIBLE));
 
-        sistema.agregarEmpresa(new Empresa(
-                "Alimentos SA", "123456789012",
-                "Av. Italia 1234"));
+        sistema.cambiarEstadoAnimal("A001");
 
-        sistema.realizarAdopcion(
-                "A001", "12345678", "Buena adaptacion");
+        sistema.eliminarObservador(observador);
 
-        sistema.registrarDonacion(
-                "123456789012", 2, 20);
+        sistema.agregarAnimal(new Animal(
+                "A003", "Max", "Activo",
+                12.0, Sistema.DISPONIBLE));
+    }
 
-        try {
+    @Override
+    public void actualizar(Sistema sistema) {
 
-            Persistencia.guardar(sistema);
-            System.out.println("Datos guardados correctamente.");
+        System.out.println("Sistema actualizado");
 
-            sistema = new Sistema();
+        System.out.println("Total: "
+                + sistema.getCantidadAnimalesTotales());
 
-            System.out.println("Animales antes de recuperar: "
-                    + sistema.getCantidadAnimalesTotales());
+        System.out.println("Disponibles: "
+                + sistema.getCantidadAnimalesDisponibles());
 
-            sistema = Persistencia.recuperar();
+        System.out.println("No disponibles: "
+                + sistema.getCantidadAnimalesNoDisponibles());
 
-            System.out.println("Datos recuperados correctamente.");
-
-            System.out.println("Animales: "
-                    + sistema.getCantidadAnimalesTotales());
-
-            System.out.println("Familias: "
-                    + sistema.getFamilias().size());
-
-            System.out.println("Empresas: "
-                    + sistema.getCantidadEmpresas());
-
-            System.out.println("Adopciones: "
-                    + sistema.getCantidadAdopciones());
-
-            System.out.println("Donaciones: "
-                    + sistema.getDonaciones().size());
-
-            System.out.println("Stock tipo 2: "
-                    + sistema.getStockPorTipo(2));
-
-            System.out.println("Estado de Rocky: "
-                    + sistema.buscarAnimal("A001").getEstado());
-
-        } catch (IOException | ClassNotFoundException e) {
-
-            System.out.println("Error: " + e.getMessage());
-        }
+        System.out.println("------------------");
     }
 }
