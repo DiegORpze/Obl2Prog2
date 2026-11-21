@@ -1,9 +1,11 @@
-
 package refugio.dominio;
 
 //PESCE Diego; ROUET--COIRIER Raphaël
+import java.io.Serializable;
 
-public class Empresa {
+public class Empresa implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String nombre;
     private String rut;
@@ -18,9 +20,11 @@ public class Empresa {
     public String getNombre() {
         return nombre;
     }
+
     public String getRut() {
         return rut;
     }
+
     public String getDireccion() {
         return direccion;
     }

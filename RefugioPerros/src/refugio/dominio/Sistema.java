@@ -2,8 +2,11 @@ package refugio.dominio;
 
 //PESCE Diego; ROUET--COIRIER Raphaël
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Sistema {
+public class Sistema implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     public static final String DISPONIBLE = "Disponible para adoptar";
     public static final String NO_DISPONIBLE = "No disponible para adoptar";
@@ -182,10 +185,7 @@ public class Sistema {
         if (familiaIngresada == null) {
             return null;
         }
-        String comentariosLimpios = "";
-        if(comentarios == null){
-            comentariosLimpios = comentarios.trim();
-        }
+        String comentariosLimpios = comentarios.trim();
 
         Adopcion adopcion = new Adopcion(proximoNumeroAdopcion, animalIngresado, familiaIngresada, comentariosLimpios);
         proximoNumeroAdopcion++;
@@ -310,6 +310,7 @@ public class Sistema {
 
         return ordenadas;
     }
+
     public ArrayList<Donacion> getDonacionesOrdenadas() {
         ArrayList<Donacion> ordenadas = getDonaciones();
 
@@ -319,57 +320,51 @@ public class Sistema {
 
         return ordenadas;
     }
-    
+
     //Contadores
-    
-    public int getCantidadAnimalesTotales(){
+    public int getCantidadAnimalesTotales() {
         return animales.size();
     }
-    
-    public int getCantidadAdopciones(){
+
+    public int getCantidadAdopciones() {
         return adopciones.size();
     }
-    
-    public int getCantidadEmpresas(){
+
+    public int getCantidadEmpresas() {
         return empresas.size();
     }
-    
-    public int getCantidadAnimalesDisponibles(){
-        
+
+    public int getCantidadAnimalesDisponibles() {
+
         int cant = 0;
-        for(Animal animal : animales){
-            if(DISPONIBLE.equals(animal.getEstado())){
+        for (Animal animal : animales) {
+            if (DISPONIBLE.equals(animal.getEstado())) {
                 cant++;
             }
         }
         return cant;
     }
-    
-    public int getCantidadAnimalesEntregados(){
-        
+
+    public int getCantidadAnimalesEntregados() {
+
         int cant = 0;
-        for(Animal animal : animales){
-            if(ENTREGADO.equals(animal.getEstado())){
+        for (Animal animal : animales) {
+            if (ENTREGADO.equals(animal.getEstado())) {
                 cant++;
             }
         }
         return cant;
     }
-    
-    public int getCantidadAnimalesNoDisponibles(){
-        
+
+    public int getCantidadAnimalesNoDisponibles() {
+
         int cant = 0;
-        for(Animal animal : animales){
-            if(NO_DISPONIBLE.equals(animal.getEstado())){
+        for (Animal animal : animales) {
+            if (NO_DISPONIBLE.equals(animal.getEstado())) {
                 cant++;
             }
         }
         return cant;
     }
-    
-    
-    
-    
-    
 
 }
