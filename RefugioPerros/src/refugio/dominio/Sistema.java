@@ -1,6 +1,6 @@
 package refugio.dominio;
 
-// autores
+//PESCE Diego; ROUET--COIRIER Raphaël
 import java.util.ArrayList;
 
 public class Sistema {
@@ -42,9 +42,7 @@ public class Sistema {
 
         String estado = animal.getEstado();
 
-        if (!DISPONIBLE.equals(estado)
-                && !NO_DISPONIBLE.equals(estado)
-                && !ENTREGADO.equals(estado)) {
+        if (!DISPONIBLE.equals(estado) && !NO_DISPONIBLE.equals(estado)) {
             return false;
         }
 
@@ -111,7 +109,7 @@ public class Sistema {
         }
 
         for (Familia familia : familias) {
-            if (familia.getCedula().trim().equals(cedula.trim())) {
+            if (familia.getCedula().trim().equalsIgnoreCase(cedula.trim())) {
                 return familia;
             }
         }
@@ -125,7 +123,7 @@ public class Sistema {
         }
 
         for (Empresa empresa : empresas) {
-            if (empresa.getRut().trim().equals(rut.trim())) {
+            if (empresa.getRut().trim().equalsIgnoreCase(rut.trim())) {
                 return empresa;
             }
         }
@@ -171,7 +169,7 @@ public class Sistema {
     //métodos de adopciones
     public Adopcion realizarAdopcion(String codigoAnimal, String cedulaFamilia, String comentarios) {
 
-        if (codigoAnimal == null || cedulaFamilia == null) {
+        if (codigoAnimal == null || cedulaFamilia == null || comentarios == null) {
             return null;
         }
 
@@ -260,5 +258,114 @@ public class Sistema {
 
         return total;
     }
+
+    public int cantidadAdopcionesFamilia(String cedulaFamilia) {
+
+        Familia familiaIngresada = buscarFamilia(cedulaFamilia);
+
+        if (familiaIngresada == null) {
+            return 0;
+        }
+
+        int cant = 0;
+        for (Adopcion adopcion : adopciones) {
+            if (adopcion.getFamilia().equals(familiaIngresada)) {
+                cant++;
+            }
+        }
+
+        return cant;
+    }
+
+    public ArrayList<Familia> getFamiliaOrdenadasPorCantAdopciones() {
+        ArrayList<Familia> ordenadas = getFamilias();
+
+        ordenadas.sort((f1, f2) -> {
+            int cant1 = cantidadAdopcionesFamilia(f1.getCedula());
+            int cant2 = cantidadAdopcionesFamilia(f2.getCedula());
+            int comp = Integer.compare(cant2, cant1);
+            if (comp != 0) {
+                return comp;
+            }
+            return f1.getApellido().compareToIgnoreCase(f2.getApellido());
+        });
+
+        return ordenadas;
+    }
+
+    public ArrayList<Familia> getFamiliaOrdenadasPorApellido() {
+        ArrayList<Familia> ordenadas = getFamilias();
+
+        ordenadas.sort((f1, f2) -> {
+            int comp = f1.getApellido().compareToIgnoreCase(f2.getApellido());
+            if (comp != 0) {
+                return comp;
+            }
+            return f1.getCedula().compareToIgnoreCase(f2.getCedula());
+        });
+
+        return ordenadas;
+    }
+    public ArrayList<Donacion> getDonacionesOrdenadas() {
+        ArrayList<Donacion> ordenadas = getDonaciones();
+
+        ordenadas.sort((f1, f2) -> {
+            return Integer.compare(f1.getNumero(), f2.getNumero());
+        });
+
+        return ordenadas;
+    }
+    
+    //Contadores
+    
+    public int getCantidadAnimalesTotales(){
+        return animales.size();
+    }
+    
+    public int getCantidadAdopciones(){
+        return adopciones.size();
+    }
+    
+    public int getCantidadEmpresas(){
+        return empresas.size();
+    }
+    
+    public int getCantidadAnimalesDisponibles(){
+        
+        int cant = 0;
+        for(Animal animal : animales){
+            if(DISPONIBLE.equals(animal.getEstado())){
+                cant++;
+            }
+        }
+        return cant;
+    }
+    
+    public int getCantidadAnimalesEntregados(){
+        
+        int cant = 0;
+        for(Animal animal : animales){
+            if(ENTREGADO.equals(animal.getEstado())){
+                cant++;
+            }
+        }
+        return cant;
+    }
+    
+    public int getCantidadAnimalesNoDisponibles(){
+        
+        int cant = 0;
+        for(Animal animal : animales){
+            if(NO_DISPONIBLE.equals(animal.getEstado())){
+                cant++;
+            }
+        }
+        return cant;
+    }
+    
+    
+    
+    
+    
 
 }

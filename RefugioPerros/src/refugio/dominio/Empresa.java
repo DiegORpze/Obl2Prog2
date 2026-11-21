@@ -1,7 +1,7 @@
 
 package refugio.dominio;
 
-// autores
+//PESCE Diego; ROUET--COIRIER Raphaël
 
 public class Empresa {
 

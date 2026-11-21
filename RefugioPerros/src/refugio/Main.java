@@ -1,6 +1,8 @@
 
 package refugio;
 
+//PESCE Diego; ROUET--COIRIER Raphaël
+
 import refugio.dominio.*;
 
 public class Main {

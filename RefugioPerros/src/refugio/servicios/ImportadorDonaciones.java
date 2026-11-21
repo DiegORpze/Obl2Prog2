@@ -1,5 +1,7 @@
 package refugio.servicios;
-// autores
+
+//PESCE Diego; ROUET--COIRIER Raphaël
+
 import refugio.dominio.Sistema;
 import refugio.dominio.Donacion;
 import java.io.File;
