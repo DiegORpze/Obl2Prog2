@@ -182,8 +182,12 @@ public class Sistema {
         if (familiaIngresada == null) {
             return null;
         }
+        String comentariosLimpios = "";
+        if(comentarios == null){
+            comentariosLimpios = comentarios.trim();
+        }
 
-        Adopcion adopcion = new Adopcion(proximoNumeroAdopcion, animalIngresado, familiaIngresada, comentarios);
+        Adopcion adopcion = new Adopcion(proximoNumeroAdopcion, animalIngresado, familiaIngresada, comentariosLimpios);
         proximoNumeroAdopcion++;
 
         animalIngresado.setEstado(ENTREGADO);
