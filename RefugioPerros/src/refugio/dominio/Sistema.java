@@ -54,7 +54,9 @@ public class Sistema implements Serializable {
         if (buscarAnimal(animal.getCodigo()) != null) {
             return false;
         }
-
+        if (!animal.getCodigo().matches("[a-zA-Z0-9]+")) {
+            return false;
+        }
         animales.add(animal);
         notificarObservadores();
         return true;

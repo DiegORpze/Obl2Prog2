@@ -1,49 +1,38 @@
 package refugio;
 
 //PESCE Diego; ROUET--COIRIER Raphaël
+import refugio.dominio.Sistema;
+import refugio.interfaz.Principal;
+import javax.swing.UIManager;
 import refugio.dominio.*;
 
-public class Main implements ObservadorSistema {
+public class Main {
 
     public static void main(String[] args) {
 
-        Sistema sistema = new Sistema();
+        try {
 
-        Main observador = new Main();
+            UIManager.setLookAndFeel(
+                    UIManager.getSystemLookAndFeelClassName());
 
-        sistema.agregarObservador(observador);
+        } catch (Exception e) {
 
-        sistema.agregarAnimal(new Animal(
-                "A001", "Rocky", "Tranquilo",
-                15.5, Sistema.DISPONIBLE));
+            System.out.println("No se pudo cambiar la apariencia.");
+        }
 
-        sistema.agregarAnimal(new Animal(
-                "A002", "Luna", "Juguetona",
-                8.0, Sistema.DISPONIBLE));
+        java.awt.EventQueue.invokeLater(new Runnable() {
 
-        sistema.cambiarEstadoAnimal("A001");
+            @Override
+            public void run() {
 
-        sistema.eliminarObservador(observador);
+                Sistema sistema = new Sistema();
 
-        sistema.agregarAnimal(new Animal(
-                "A003", "Max", "Activo",
-                12.0, Sistema.DISPONIBLE));
-    }
+                Principal ventana = new Principal(sistema);
 
-    @Override
-    public void actualizar(Sistema sistema) {
+                ventana.setVisible(true);
 
-        System.out.println("Sistema actualizado");
 
-        System.out.println("Total: "
-                + sistema.getCantidadAnimalesTotales());
-
-        System.out.println("Disponibles: "
-                + sistema.getCantidadAnimalesDisponibles());
-
-        System.out.println("No disponibles: "
-                + sistema.getCantidadAnimalesNoDisponibles());
-
-        System.out.println("------------------");
+            }
+        });
     }
 }
