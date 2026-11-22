@@ -44,6 +44,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Realizar adopci&#xf3;n"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemRealizarAdopcionActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemCambiarEstado">
               <Properties>
@@ -57,16 +60,25 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Anular adopci&#xf3;n"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemAnularAdopcionActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemRegistrarDonacion">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Registrar donaci&#xf3;n"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemRegistrarDonacionActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemImportarDonaciones">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Importar donaciones"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemImportarDonacionesActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -87,11 +99,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consulta de donaciones"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemConsultaDonacionesActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemGenerarPagina">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Generaci&#xf3;n de p&#xe1;gina"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemGenerarPaginaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemRecuperarDatos">
               <Properties>
@@ -105,6 +123,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Autores"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemAutoresActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemSalir">
               <Properties>

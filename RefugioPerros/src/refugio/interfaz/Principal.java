@@ -375,6 +375,7 @@ public class Principal extends javax.swing.JFrame implements ObservadorSistema {
         menuMovimientos.setText("Movimientos");
 
         itemRealizarAdopcion.setText("Realizar adopción");
+        itemRealizarAdopcion.addActionListener(this::itemRealizarAdopcionActionPerformed);
         menuMovimientos.add(itemRealizarAdopcion);
 
         itemCambiarEstado.setText("Cambiar de estado");
@@ -382,12 +383,15 @@ public class Principal extends javax.swing.JFrame implements ObservadorSistema {
         menuMovimientos.add(itemCambiarEstado);
 
         itemAnularAdopcion.setText("Anular adopción");
+        itemAnularAdopcion.addActionListener(this::itemAnularAdopcionActionPerformed);
         menuMovimientos.add(itemAnularAdopcion);
 
         itemRegistrarDonacion.setText("Registrar donación");
+        itemRegistrarDonacion.addActionListener(this::itemRegistrarDonacionActionPerformed);
         menuMovimientos.add(itemRegistrarDonacion);
 
         itemImportarDonaciones.setText("Importar donaciones");
+        itemImportarDonaciones.addActionListener(this::itemImportarDonacionesActionPerformed);
         menuMovimientos.add(itemImportarDonaciones);
 
         jMenuBar1.add(menuMovimientos);
@@ -399,9 +403,11 @@ public class Principal extends javax.swing.JFrame implements ObservadorSistema {
         menuVarios.add(itemConsultaFamilias);
 
         itemConsultaDonaciones.setText("Consulta de donaciones");
+        itemConsultaDonaciones.addActionListener(this::itemConsultaDonacionesActionPerformed);
         menuVarios.add(itemConsultaDonaciones);
 
         itemGenerarPagina.setText("Generación de página");
+        itemGenerarPagina.addActionListener(this::itemGenerarPaginaActionPerformed);
         menuVarios.add(itemGenerarPagina);
 
         itemRecuperarDatos.setText("Recuperar datos");
@@ -409,6 +415,7 @@ public class Principal extends javax.swing.JFrame implements ObservadorSistema {
         menuVarios.add(itemRecuperarDatos);
 
         itemAutores.setText("Autores");
+        itemAutores.addActionListener(this::itemAutoresActionPerformed);
         menuVarios.add(itemAutores);
 
         itemSalir.setText("Salir");
@@ -455,11 +462,13 @@ public class Principal extends javax.swing.JFrame implements ObservadorSistema {
     }//GEN-LAST:event_itemAnimalesActionPerformed
 
     private void itemConsultaFamiliasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemConsultaFamiliasActionPerformed
-        // TODO add your handling code here:
+        ConsultaFamilias ventana = new ConsultaFamilias(sistema);
+        ventana.setVisible(true);
     }//GEN-LAST:event_itemConsultaFamiliasActionPerformed
 
     private void itemCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCambiarEstadoActionPerformed
-        // TODO add your handling code here:
+        CambiarEstado ventana = new CambiarEstado(sistema);
+        ventana.setVisible(true);
     }//GEN-LAST:event_itemCambiarEstadoActionPerformed
 
     private void itemRecuperarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRecuperarDatosActionPerformed
@@ -510,6 +519,41 @@ public class Principal extends javax.swing.JFrame implements ObservadorSistema {
         AltaEmpresa ventana = new AltaEmpresa(sistema);
         ventana.setVisible(true);
     }//GEN-LAST:event_itemEmpresasActionPerformed
+
+    private void itemRealizarAdopcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRealizarAdopcionActionPerformed
+        RealizarAdopcion ventana = new RealizarAdopcion(sistema);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_itemRealizarAdopcionActionPerformed
+
+    private void itemAnularAdopcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAnularAdopcionActionPerformed
+        AnularAdopcion ventana = new AnularAdopcion(sistema);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_itemAnularAdopcionActionPerformed
+
+    private void itemRegistrarDonacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRegistrarDonacionActionPerformed
+        RegistrarDonacion ventana = new RegistrarDonacion(sistema);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_itemRegistrarDonacionActionPerformed
+
+    private void itemImportarDonacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemImportarDonacionesActionPerformed
+        ImportarDonaciones ventana = new ImportarDonaciones(sistema);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_itemImportarDonacionesActionPerformed
+
+    private void itemConsultaDonacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemConsultaDonacionesActionPerformed
+        ConsultaDonaciones ventana = new ConsultaDonaciones(sistema);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_itemConsultaDonacionesActionPerformed
+
+    private void itemGenerarPaginaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemGenerarPaginaActionPerformed
+        GenerarPagina ventana = new GenerarPagina(sistema);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_itemGenerarPaginaActionPerformed
+
+    private void itemAutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAutoresActionPerformed
+        Autores ventana = new Autores();
+        ventana.setVisible(true);
+    }//GEN-LAST:event_itemAutoresActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem itemAnimales;
