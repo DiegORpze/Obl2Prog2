@@ -14,6 +14,19 @@
             <file>file:/C:/Users/Diego/Documents/GitHub/Obl2Prog2/RefugioPerros/src/refugio/servicios/GeneradorHTML.java</file>
             <file>file:/C:/Users/Diego/Documents/GitHub/Obl2Prog2/RefugioPerros/src/refugio/servicios/Persistencia.java</file>
             <file>file:/C:/Users/Diego/Documents/GitHub/Obl2Prog2/RefugioPerros/src/refugio/dominio/ObservadorSistema.java</file>
+            <file>file:/C:/Users/Diego/Documents/GitHub/Obl2Prog2/RefugioPerros/src/refugio/interfaz/Principal.java</file>
+            <file>file:/C:/Users/Diego/Documents/GitHub/Obl2Prog2/RefugioPerros/src/refugio/interfaz/AltaAnimal.java</file>
+            <file>file:/C:/Users/Diego/Documents/GitHub/Obl2Prog2/RefugioPerros/src/refugio/interfaz/AltaFamilia.java</file>
+            <file>file:/C:/Users/Diego/Documents/GitHub/Obl2Prog2/RefugioPerros/src/refugio/interfaz/AltaEmpresa.java</file>
+            <file>file:/C:/Users/Diego/Documents/GitHub/Obl2Prog2/RefugioPerros/src/refugio/interfaz/RealizarAdopcion.java</file>
+            <file>file:/C:/Users/Diego/Documents/GitHub/Obl2Prog2/RefugioPerros/src/refugio/interfaz/CambiarEstado.java</file>
+            <file>file:/C:/Users/Diego/Documents/GitHub/Obl2Prog2/RefugioPerros/src/refugio/interfaz/AnularAdopcion.java</file>
+            <file>file:/C:/Users/Diego/Documents/GitHub/Obl2Prog2/RefugioPerros/src/refugio/interfaz/RegistrarDonacion.java</file>
+            <file>file:/C:/Users/Diego/Documents/GitHub/Obl2Prog2/RefugioPerros/src/refugio/interfaz/ImportarDonaciones.java</file>
+            <file>file:/C:/Users/Diego/Documents/GitHub/Obl2Prog2/RefugioPerros/src/refugio/interfaz/ConsultaFamilias.java</file>
+            <file>file:/C:/Users/Diego/Documents/GitHub/Obl2Prog2/RefugioPerros/src/refugio/interfaz/ConsultaDonaciones.java</file>
+            <file>file:/C:/Users/Diego/Documents/GitHub/Obl2Prog2/RefugioPerros/src/refugio/interfaz/GenerarPagina.java</file>
+            <file>file:/C:/Users/Diego/Documents/GitHub/Obl2Prog2/RefugioPerros/src/refugio/interfaz/Autores.java</file>
         </group>
     </open-files>
 </project-private>
