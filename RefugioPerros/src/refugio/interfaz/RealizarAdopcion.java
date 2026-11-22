@@ -57,6 +57,13 @@ public class RealizarAdopcion extends javax.swing.JFrame
         lstFamilias.setModel(modeloFamilias);
 
         mostrarDatosAnimal();
+        int ultimoNumero = sistema.getProximoNumeroAdopcion() - 1;
+
+        if (ultimoNumero == 0) {
+            lblNumeroAdopcion.setText("-");
+        } else {
+            lblNumeroAdopcion.setText(String.valueOf(ultimoNumero));
+        }
     }
 
     private void mostrarDatosAnimal() {

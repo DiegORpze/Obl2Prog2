@@ -171,6 +171,10 @@ public class Sistema implements Serializable {
         return new ArrayList<>(donaciones);
     }
 
+    public int getProximoNumeroAdopcion() {
+        return proximoNumeroAdopcion;
+    }
+
     // validacion aux
     private boolean textoValido(String texto) {
         return texto != null && !texto.trim().isEmpty();

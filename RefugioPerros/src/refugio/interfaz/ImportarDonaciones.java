@@ -58,6 +58,7 @@ public class ImportarDonaciones extends javax.swing.JFrame {
         txtArchivo.setEditable(false);
 
         btnExaminar.setText("Examinar...");
+        btnExaminar.addActionListener(this::btnExaminarActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -192,9 +193,30 @@ public class ImportarDonaciones extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnExaminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExaminarActionPerformed
+        JFileChooser selector = new JFileChooser();
+
+        selector.setDialogTitle("Seleccionar archivo de donaciones");
+
+        selector.setFileFilter(
+                new FileNameExtensionFilter("Archivos TXT", "txt"));
+
+        int respuesta = selector.showOpenDialog(this);
+
+        if (respuesta == JFileChooser.APPROVE_OPTION) {
+
+            archivoSeleccionado = selector.getSelectedFile();
+
+            txtArchivo.setText(archivoSeleccionado.getAbsolutePath());
+
+            btnImportar.setEnabled(true);
+        }
+
+    }//GEN-LAST:event_btnExaminarActionPerformed
+
+        /**
+         * @param args the command line arguments
+         */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
